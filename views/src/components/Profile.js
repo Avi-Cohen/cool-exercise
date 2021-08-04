@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import JSONPretty from "react-json-pretty";
 import axios from "axios";
 
 const Profile = () => {
@@ -8,17 +7,23 @@ const Profile = () => {
   /*
   check connection to back
   */
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await axios.get("http://localhost:5000/");
-      console.log(data);
-    };
-    fetch();
-  }, []);
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     const data = await axios.get("http://localhost:5000/");
+  //     console.log(data);
+  //   };
+  //   fetch();
+  // }, []);
   const [value, setValue] = useState("");
+  const [results, setResults] = useState([]);
 
+  useEffect(() => {
+    console.log(results);
+  }, [results]);
   const handleSubmit = async () => {
-    await axios.post("http://localhost:5000/form", { value });
+    const response = await axios.post("http://localhost:5000/form", { value });
+    console.log(response);
+    setResults((results) => [...results, ...response.data]);
   };
   return (
     isAuthenticated && (
@@ -30,6 +35,9 @@ const Profile = () => {
           in App
           <input value={value} onChange={(e) => setValue(e.target.value)} />
           <button onClick={handleSubmit}>Submit value</button>
+        </div>
+        <div>
+          {results.map(result => (<div>{JSON.stringify(result)}</div>))}
         </div>
       </div>
     )

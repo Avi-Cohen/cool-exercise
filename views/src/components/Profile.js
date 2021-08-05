@@ -26,7 +26,7 @@ const Profile = () => {
         <div className="App">
           <span>Paste Path to File: </span>
           <input value={value} onChange={(e) => setValue(e.target.value)} />
-          <button onClick={handleSubmit}>Submit value</button>
+          <button onClick={handleSubmit}>Open</button>
         </div>
         {results.length > 0 ? <LineChart results={results} /> : null}
       </div>

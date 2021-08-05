@@ -90,7 +90,7 @@ app.get("/", (req, res) => {
 });
 app.post("/form", (req, res) => {
   const { value } = req.body;
-  fs.createReadStream(value)
+  fs.createReadStream(path.normalize(value))
     .pipe(csv({}))
     .on("data", (data) => results.push(data))
     .on("end", () => {

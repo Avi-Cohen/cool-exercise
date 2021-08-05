@@ -5,16 +5,6 @@ import LineChart from "./LineChart";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
-  /*
-  check connection to back
-  */
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     const data = await axios.get("http://localhost:5000/");
-  //     console.log(data);
-  //   };
-  //   fetch();
-  // }, []);
   const [value, setValue] = useState("");
   const [results, setResults] = useState([]);
 
@@ -23,7 +13,6 @@ const Profile = () => {
   }, [results]);
   const handleSubmit = async () => {
     const response = await axios.post("http://localhost:5000/form", { value });
-    console.log(response);
     setResults((results) => [...results, ...response.data]);
   };
   return (
@@ -37,9 +26,6 @@ const Profile = () => {
           <input value={value} onChange={(e) => setValue(e.target.value)} />
           <button onClick={handleSubmit}>Submit value</button>
         </div>
-        {/* <div>
-          {results.map(result => (<div>{JSON.stringify(result)}</div>))}
-        </div> */}
         {results.length > 0? <LineChart results={results}/> : null}
       </div>
     )

@@ -23,17 +23,12 @@ app.use(express.json());
 
 const mergeData = (arr) => {
   const merged = [];
-  // console.log(arr);
   arr.forEach((element) => {
-    // console.log(element[Object.keys(results[0])[0]]);
     const match = server_data.filter(
       (data) =>
         data[Object.keys(results[0])[0]] === element[Object.keys(results[0])[0]]
     );
-    // console.log('match:');
-    // console.log(match[0].CustomerName);
     match[0].CustomerName = element.CustomerName;
-    // console.log(match[0]);
     merged.push(match[0]);
   });
   return merged;
@@ -49,17 +44,7 @@ app.post("/form", (req, res) => {
   fs.createReadStream(value)
     .pipe(csv({}))
     .on("data", (data) => results.push(data))
-    .on("end", () => {
-      //   console.log(results);
-      //   console.log(server_data);
-      //   mergeData(results);
-      // console.log(mergeData(results));
-      
-      // mergeData(results);
-
-      //   console.log(server_data);
-      console.log(Object.keys(mergeData(results)[0]).slice(2));
-      
+    .on("end", () => {      
       res.send(JSON.stringify(mergeData(results)));
     });
 });

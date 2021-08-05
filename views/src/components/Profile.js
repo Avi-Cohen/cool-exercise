@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import LineChart from "./LineChart";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -36,9 +37,10 @@ const Profile = () => {
           <input value={value} onChange={(e) => setValue(e.target.value)} />
           <button onClick={handleSubmit}>Submit value</button>
         </div>
-        <div>
+        {/* <div>
           {results.map(result => (<div>{JSON.stringify(result)}</div>))}
-        </div>
+        </div> */}
+        {results.length > 0? <LineChart results={results}/> : null}
       </div>
     )
   );

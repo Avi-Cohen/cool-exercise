@@ -7,7 +7,7 @@ const csv = require("csv-parser");
 
 app.use(express.json());
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const results = [];
 const server_data = [];
@@ -54,8 +54,12 @@ app.post("/form", (req, res) => {
       //   console.log(server_data);
       //   mergeData(results);
       // console.log(mergeData(results));
-      mergeData(results);
+      
+      // mergeData(results);
+
       //   console.log(server_data);
+      console.log(Object.keys(mergeData(results)[0]).slice(2));
+      
       res.send(JSON.stringify(mergeData(results)));
     });
 });

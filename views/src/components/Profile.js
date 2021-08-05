@@ -14,6 +14,8 @@ const Profile = () => {
   const handleSubmit = async () => {
     const response = await axios.post("http://localhost:5000/form", { value });
     setResults((results) => [...results, ...response.data]);
+    const data = await axios.get("http://localhost:5000/");
+    console.log(data);
   };
   return (
     isAuthenticated && (
@@ -26,7 +28,7 @@ const Profile = () => {
           <input value={value} onChange={(e) => setValue(e.target.value)} />
           <button onClick={handleSubmit}>Submit value</button>
         </div>
-        {results.length > 0? <LineChart results={results}/> : null}
+        {results.length > 0 ? <LineChart results={results} /> : null}
       </div>
     )
   );

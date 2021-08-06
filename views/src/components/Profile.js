@@ -21,7 +21,7 @@ const Profile = () => {
   //}
 
   const handleSubmit = async () => {
-    const response = await axios.post('https://api.codetabs.com/v1/proxy?quest=https://cool-exercise-server.herokuapp.com/form', { value });
+    const response = await axios.post('https://cool-exercise-server.herokuapp.com/form', { value });
     setResults((results) => [...results, ...response.data]);
     // const data = await axios.get("http://localhost:5000/");
     // console.log(data);

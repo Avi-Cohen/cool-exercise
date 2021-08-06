@@ -17,7 +17,7 @@ const Profile = () => {
     origin = "http://localhost:5000/form";
   }
   if (process.env.NODE_ENV === "production") {
-    origin = "/form";
+    origin = "https://cool-exercise.herokuapp.com/form";
   }
 
   const handleSubmit = async () => {

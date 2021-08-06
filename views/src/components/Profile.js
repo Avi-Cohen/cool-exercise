@@ -11,11 +11,20 @@ const Profile = () => {
   useEffect(() => {
     console.log(results);
   }, [results]);
+
+  let origin;
+  if (process.env.NODE_ENV === "development") {
+    origin = "http://localhost:5000/form";
+  }
+  if (process.env.NODE_ENV === "production") {
+    origin = "/form";
+  }
+
   const handleSubmit = async () => {
-    const response = await axios.post("http://localhost:5000/form", { value });
+    const response = await axios.post(origin, { value });
     setResults((results) => [...results, ...response.data]);
-    const data = await axios.get("http://localhost:5000/");
-    console.log(data);
+    // const data = await axios.get("http://localhost:5000/");
+    // console.log(data);
   };
   return (
     isAuthenticated && (

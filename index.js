@@ -11,6 +11,15 @@ app.use(express.json());
 const publicDirectory = path.join(__dirname, "views/build");
 app.use(express.static(publicDirectory));
 
+if (process.env.NODE_ENV === 'production') {
+  // Exprees will serve up production assets
+  app.use(express.static('client/build'));
+  // Express serve up index.html file if it doesn't recognize route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
@@ -69,12 +78,8 @@ const server_data = [
 const mergeData = (arr) => {
   const merged = [];
   arr.forEach((element) => {
-    // console.log(element[Object.keys(results[0])[0]]);
-    // console.log(Object.values(server_data[0])[0]);
-
     const match = server_data.filter(
       (data) =>
-        // data[Object.keys(results[0])[0]] === element[Object.keys(results[0])[0]]
         Object.values(data)[0] === element[Object.keys(results[0])[0]]
     );
     console.log(match);

@@ -17,17 +17,29 @@ const Profile = () => {
     origin = "http://localhost:5000/form";
   }
   if (process.env.NODE_ENV === "production") {
-    origin = "https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com/form";
+    origin =
+      "https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com/form";
   }
 
   const handleSubmit = async () => {
-    const response = await axios.post(origin, { value });
-    setResults((results) => [...results, ...response.data]);
+    try {
+      const response = await axios.post(origin, { value });
+      setResults((results) => [...results, ...response.data]);
+    } catch (e) {
+      console.log(e);
+    }
   };
   const handleSubmit2 = async () => {
-    const response = await axios.get('https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com');
-    console.log(response);
+    try {
+      const response = await axios.get(
+        "https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com"
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
+  
   return (
     isAuthenticated && (
       <div>

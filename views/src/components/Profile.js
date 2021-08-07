@@ -23,8 +23,10 @@ const Profile = () => {
   const handleSubmit = async () => {
     const response = await axios.post(origin, { value });
     setResults((results) => [...results, ...response.data]);
-    // const data = await axios.get("http://localhost:5000/");
-    // console.log(data);
+  };
+  const handleSubmit2 = async () => {
+    const response = await axios.get('https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com');
+    console.log(response);
   };
   return (
     isAuthenticated && (
@@ -36,6 +38,7 @@ const Profile = () => {
           <span>Paste Path to File: </span>
           <input value={value} onChange={(e) => setValue(e.target.value)} />
           <button onClick={handleSubmit}>Open</button>
+          <button onClick={handleSubmit2}>test(GET)</button>
         </div>
         {results.length > 0 ? <LineChart results={results} /> : null}
       </div>

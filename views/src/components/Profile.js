@@ -17,7 +17,7 @@ const Profile = () => {
     origin = "http://localhost:5000/form";
   }
   if (process.env.NODE_ENV === "production") {
-    origin = "https://api.codetabs.com/v1/proxy?quest=https://cool-exercise-server.herokuapp.com/form";
+    origin = "https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com/form";
   }
 
   const handleSubmit = async () => {

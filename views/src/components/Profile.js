@@ -31,7 +31,7 @@ const Profile = () => {
   };
   const handleSubmit2 = async () => {
     const response = await axios.get(
-      "https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com"
+      "https://cool-exercise-server.herokuapp.com"
     );
     console.log(response);
   };

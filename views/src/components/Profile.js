@@ -30,12 +30,16 @@ const Profile = () => {
     }
   };
   const handleSubmit2 = async () => {
-    const response = await axios.get(
-      "https://cool-exercise-server.herokuapp.com"
-    );
-    console.log(response);
+    try {
+      const response = await axios.get(
+        "https://corsanywhere.herokuapp.com/https://cool-exercise-server.herokuapp.com"
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
-
+  
   return (
     isAuthenticated && (
       <div>

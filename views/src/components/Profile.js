@@ -29,6 +29,8 @@ const Profile = () => {
       console.log(e);
     }
   };
+  
+  
   const handleSubmit2 = async () => {
     try {
       const response = await axios.get(
